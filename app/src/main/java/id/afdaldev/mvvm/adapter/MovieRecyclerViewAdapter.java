@@ -1,6 +1,7 @@
 package id.afdaldev.mvvm.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
+import id.afdaldev.mvvm.DetailActivity;
 import id.afdaldev.mvvm.R;
 import id.afdaldev.mvvm.base.ViewModelProviderFactory;
 import id.afdaldev.mvvm.data.model.Movie;
@@ -25,8 +27,10 @@ import id.afdaldev.mvvm.utils.InjectorUtils;
 public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder> {
 
     private List<Movie> movieList;
+    private Context context;
 
-    public MovieRecyclerViewAdapter( List<Movie> movieList){
+    public MovieRecyclerViewAdapter(Context context, List<Movie> movieList){
+        this.context = context;
         this.movieList = movieList;
     }
 
@@ -56,7 +60,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         return movieList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mMovieTitle;
         private ImageView mImageView;
@@ -65,6 +69,18 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
             super(itemView);
             mMovieTitle = itemView.findViewById(R.id.tv_movie_title);
             mImageView = itemView.findViewById(R.id.img_movie);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Movie movie = movieList.get(position);
+
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("movie", movie);
+            context.startActivity(intent);
         }
     }
 }

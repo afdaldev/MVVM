@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         viewModel.getNowPlayingMovies().observe(this, movies -> {
-            adapter = new MovieRecyclerViewAdapter(movies);
+            adapter = new MovieRecyclerViewAdapter(this, movies);
             recyclerView.setAdapter(adapter);
             for (Movie movie : movies){
                 Log.d(TAG, movie.getTitle());
