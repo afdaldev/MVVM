@@ -14,15 +14,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import id.afdaldev.mvvm.DetailActivity;
 import id.afdaldev.mvvm.R;
-import id.afdaldev.mvvm.base.ViewModelProviderFactory;
 import id.afdaldev.mvvm.data.model.Movie;
-import id.afdaldev.mvvm.ui.MovieViewModel;
-import id.afdaldev.mvvm.utils.InjectorUtils;
 
 public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder> {
 
